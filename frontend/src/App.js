@@ -15,13 +15,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-<<<<<<< Updated upstream
-          aaaaaaaa
-=======
           Học tậpâss
->>>>>>> Stashed changes
         </a>
-      </header>
+ </header>
     </div>
   );
 }
