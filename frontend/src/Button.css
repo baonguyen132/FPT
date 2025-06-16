@@ -1,3 +1,30 @@
-.text {
-    color: red;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.button {
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sun-moon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 10px;
+    background: #888;
+    border-radius: 100%;
+    border: 1px solid;
+
 }
