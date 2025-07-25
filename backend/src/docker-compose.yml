@@ -1,0 +1,51 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: inventory_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      POSTGRES_DB: ${DATABASE_NAME:-inventory_db}
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: inventory_backend
+    restart: always
+    environment:
+      PORT: ${PORT:-3000}
+      DATABASE_HOST: db # Use the service name defined in docker-compose
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${DATABASE_USER:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      DATABASE_NAME: ${DATABASE_NAME:-inventory_db}
+      DATABASE_SYNCHRONIZE: ${DATABASE_SYNCHRONIZE:-true}
+      DATABASE_LOGGING: ${DATABASE_LOGGING:-true}
+    ports:
+      - "4200:3000"
+    depends_on:
+      db:
+        condition: service_healthy # Wait for database to be healthy
+    volumes:
+      - .:/app # Mount current directory to /app in container for hot-reloading (dev)
+      - /app/node_modules # Exclude node_modules from host mount
+    # Command to run for development with hot-reloading
+    # For production, use `npm run start:prod`
+    command: npm run start:dev
+
+volumes:
+  pg_data:
