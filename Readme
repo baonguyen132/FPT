@@ -1,0 +1,116 @@
+Mô tả Dự án
+Dự án này sẽ mô phỏng một hệ thống quản lý kho hàng đơn giản, cho phép người dùng thực hiện các tác vụ cơ bản như:
+
+Xem danh sách sản phẩm: Hiển thị tất cả các sản phẩm có trong kho với các thông tin chi tiết (tên, mô tả, số lượng, giá, danh mục).
+
+Thêm sản phẩm mới: Cho phép người dùng thêm một sản phẩm mới vào kho.
+
+Chỉnh sửa thông tin sản phẩm: Cập nhật thông tin của một sản phẩm hiện có.
+
+Xóa sản phẩm: Xóa một sản phẩm khỏi kho.
+
+Tìm kiếm/Lọc sản phẩm: Tìm kiếm sản phẩm theo tên hoặc lọc theo danh mục.
+
+Quản lý danh mục sản phẩm: Xem, thêm, sửa, xóa các danh mục.
+
+Mục tiêu Học tập
+Qua dự án này, các bạn sẽ được thực hành:
+
+Xây dựng cấu trúc thư mục ứng dụng React theo hướng Solid.
+
+Sử dụng React Hooks (useState, useEffect, useContext, useRef, useReducer, custom hooks).
+
+Quản lý state của ứng dụng một cách hiệu quả.
+
+Tương tác với API backend (sử dụng fetch API hoặc Axios).
+
+Thiết kế giao diện người dùng thân thiện (sử dụng CSS modules, Styled Components hoặc Tailwind CSS).
+
+Xử lý form và validation.
+
+Áp dụng các nguyên tắc Solid trong thiết kế frontend.
+
+Hiểu rõ luồng dữ liệu giữa frontend và backend.
+
+Cấu trúc Ứng dụng Frontend (React - Theo Nguyên tắc SOLID)
+Để áp dụng các nguyên tắc SOLID, chúng ta sẽ tổ chức cấu trúc thư mục của ứng dụng React một cách có hệ thống, tách biệt rõ ràng các trách nhiệm.
+
+src/
+├── assets/                  # Ảnh, icon, font
+├── components/              # Các UI components tái sử dụng (stateless/dumb components)
+│   ├── common/              # Các components chung, ví dụ: Button, Input, Modal, Table
+│   │   ├── Button/
+│   │   │   ├── Button.jsx
+│   │   │   └── Button.module.css
+│   │   ├── Input/
+│   │   │   ├── Input.jsx
+│   │   │   └── Input.module.css
+│   │   └── ...
+│   ├── ProductCard/         # Component hiển thị thông tin sản phẩm
+│   │   ├── ProductCard.jsx
+│   │   └── ProductCard.module.css
+│   └── CategoryTag/         # Component hiển thị tag danh mục
+│       ├── CategoryTag.jsx
+│       └── CategoryTag.module.css
+├── contexts/                # Quản lý global state (S - Single Responsibility, I - Interface Segregation)
+│   ├── ProductContext.jsx   # Context cho dữ liệu sản phẩm
+│   └── CategoryContext.jsx  # Context cho dữ liệu danh mục
+├── hooks/                   # Các custom hooks (R - Reusable, Open/Closed Principle - O, Single Responsibility - S)
+│   ├── useProducts.js       # Hook để fetch và quản lý state sản phẩm
+│   ├── useCategories.js     # Hook để fetch và quản lý state danh mục
+│   ├── useForm.js           # Hook chung cho việc quản lý form input
+│   └── ...
+├── layout/                  # Cấu trúc bố cục trang (Header, Footer, Sidebar, MainContent)
+│   ├── AppLayout.jsx
+│   └── Header.jsx
+│   └── Sidebar.jsx
+├── pages/                   # Các trang chính của ứng dụng (views/containers)
+│   ├── HomePage.jsx         # Trang chủ
+│   ├── ProductsPage/        # Trang quản lý sản phẩm
+│   │   ├── ProductsPage.jsx
+│   │   ├── ProductList.jsx  # Component hiển thị danh sách sản phẩm
+│   │   ├── ProductForm.jsx  # Component form thêm/sửa sản phẩm
+│   │   └── ...
+│   ├── CategoriesPage/      # Trang quản lý danh mục
+│   │   ├── CategoriesPage.jsx
+│   │   ├── CategoryList.jsx
+│   │   └── CategoryForm.jsx
+│   └── NotFoundPage.jsx
+├── services/                # Các module tương tác với API backend (S - Single Responsibility, D - Dependency Inversion)
+│   ├── api.js               # Cấu hình Axios/Fetch chung
+│   ├── productService.js    # Các hàm gọi API liên quan đến sản phẩm
+│   └── categoryService.js   # Các hàm gọi API liên quan đến danh mục
+├── utils/                   # Các hàm tiện ích (helper functions)
+│   ├── helpers.js
+│   ├── constants.js
+│   └── validation.js
+├── App.jsx                  # Component gốc của ứng dụng
+├── index.css                # CSS toàn cục
+└── main.jsx                 # Entry point của ứng dụng (React 18)
+Giải thích về cách áp dụng SOLID trong Frontend:
+
+Single Responsibility Principle (SRP):
+
+Mỗi component, hook, service chỉ có một lý do duy nhất để thay đổi. Ví dụ: ProductCard chỉ hiển thị sản phẩm, productService chỉ lo việc tương tác API sản phẩm.
+
+Thư mục components, hooks, services là ví dụ rõ ràng nhất.
+
+Open/Closed Principle (OCP):
+
+Các module có thể mở rộng nhưng đóng để chỉnh sửa. Ví dụ: Các custom hooks (useProducts, useForm) có thể được sử dụng lại ở nhiều nơi mà không cần thay đổi code bên trong hook đó. Khi có yêu cầu mới (ví dụ: thêm chức năng lọc), ta có thể mở rộng hook hoặc tạo hook mới, không sửa hook cũ.
+
+Các component chung trong common folder cũng là ví dụ tốt.
+
+Liskov Substitution Principle (LSP):
+
+Trong React, LSP thường được áp dụng ngầm qua việc sử dụng props và composition. Một component có thể được thay thế bằng một component khác mà không làm phá vỡ ứng dụng nếu chúng tuân thủ cùng một "giao diện" props.
+
+Interface Segregation Principle (ISP):
+
+Khách hàng không nên bị buộc phụ thuộc vào các giao diện mà họ không sử dụng. Trong React, điều này có thể được thể hiện qua việc chia nhỏ các Context API hoặc tạo các custom hooks nhỏ hơn thay vì một hook lớn chứa quá nhiều logic không liên quan. Ví dụ, ProductContext và CategoryContext riêng biệt.
+
+Dependency Inversion Principle (DIP):
+
+Các module cấp cao không nên phụ thuộc vào các module cấp thấp. Cả hai nên phụ thuộc vào các abstraction. Các abstraction không nên phụ thuộc vào các chi tiết. Các chi tiết nên phụ thuộc vào các abstraction.
+
+Trong ví dụ này, pages (module cấp cao) sẽ gọi các hàm từ services (abstraction) thay vì trực tiếp gọi fetch hay axios (chi tiết cấp thấp). Các services lại phụ thuộc vào một api.js (abstraction) chung.

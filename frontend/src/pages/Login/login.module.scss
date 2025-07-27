@@ -1,0 +1,29 @@
+.loginContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgb(6, 217, 114), rgb(0 188 212))
+}
+
+.loginForm {
+    background-color: #ffffff55;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    p {
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+}
+
+.title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+}

@@ -1,0 +1,119 @@
+.navigation {
+    background: rgb(6 217 114);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .logo {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8em;
+        color: #004953;
+        text-decoration: none;
+    }
+
+    .menu {
+        height: calc(100% - 125px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .menu_item {
+
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                gap: 15px;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                transition: all .4s;
+
+                li {
+                    width: 70px;
+                    height: 70px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1;
+
+                    a {
+                        font-size: 25px !important;
+                        font-weight: bold !important;
+                        color: white;
+                        display: flex;
+                        width: 100%;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+                }
+
+            }
+        }
+
+        .menu_logout {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25px !important;
+            font-weight: bold !important;
+            cursor: pointer;
+        }
+
+    }
+}
+
+
+.liquid_glass {
+    position: absolute;
+    border-radius: 20px;
+    isolation: isolate;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    user-select: none;
+    transition: all .4s;
+
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+    }
+
+    // Glass distortion effect
+    &::before {
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    // Outline shine
+    &::after {
+        box-shadow: inset 2px 2px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 1px 1px rgb(255 255 255 / 50%);
+    }
+
+    &.dragging {
+        cursor: grabbing;
+    }
+}

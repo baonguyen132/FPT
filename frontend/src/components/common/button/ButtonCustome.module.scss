@@ -1,0 +1,63 @@
+.button {
+    width: 100%;
+    height: 50px;
+    background-color: #4facfe;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+
+    position: relative;
+    border-radius: 12px;
+    isolation: isolate;
+    background-color: rgb(255 255 255 / 25%);
+    color: rgb(255 255 255 / 90%);
+    text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+    font-size: 1.25rem;
+    box-shadow: 0 6px 6px rgb(0 0 0 / 20%), 0 0 20px rgb(0 0 0 / 10%);
+    text-align: center;
+    user-select: none;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+    }
+
+    // Glass distortion effect
+    &::before {
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    // Outline shine
+    &::after {
+        box-shadow: inset 2px 2px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 1px 1px rgb(255 255 255 / 50%);
+    }
+
+    &.dragging {
+        cursor: grabbing;
+    }
+
+    &:hover {
+       animation: buttonHover .5s forwards;
+
+    }
+
+}
+
+@keyframes buttonHover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
