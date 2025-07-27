@@ -13,6 +13,10 @@ import { Category } from './database/entities/category.entity';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: '*', // hoặc '*' nếu đang dev nhanh, nhưng không nên dùng ở production
+    credentials: true, // nếu bạn dùng cookie hoặc cần gửi credentials
+  });
   // Áp dụng ValidationPipe toàn cục để xử lý DTOs và validation đầu vào
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, // Loại bỏ các thuộc tính không có trong DTO

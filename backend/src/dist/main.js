@@ -11,6 +11,10 @@ const product_entity_1 = require("./database/entities/product.entity");
 const category_entity_1 = require("./database/entities/category.entity");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors({
+        origin: '*',
+        credentials: true,
+    });
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,
