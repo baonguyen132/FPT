@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react"
 
-function useFetchCategories({url, accessToken  , dependencies = []}) {
-    const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+function useFetchProducts({ url, accessToken, dependencies = [] }) {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         let isCancelled = false
 
-        const fetchCategories = async () => {
-            setLoading(true);
-            setError(null);
+        const fetchProduct = async () => {
+            setLoading(true)
+            setError(null)
+
             try {
                 const response = await fetch(url, {
                     method: "GET",
@@ -18,13 +19,11 @@ function useFetchCategories({url, accessToken  , dependencies = []}) {
                         "Accept": "application/json",
                         "Authorization": `Bearer ${accessToken}`
                     }
-                });
-
-
+                })
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 if (!isCancelled) {
                     const data = await response.json()
-                    setCategories(data)
+                    setProducts(data)
                 }
             } catch (error) {
                 if (!isCancelled) setError(error.message);
@@ -33,15 +32,14 @@ function useFetchCategories({url, accessToken  , dependencies = []}) {
                 if (!isCancelled) setLoading(false);
             }
         }
-
-        fetchCategories();
-
+        fetchProduct();
         return () => {
             isCancelled = true;
         };
     }, dependencies)
 
-    return { categories, loading, error };
+    return { products, loading, error };
+
 }
 
-export default useFetchCategories;
+export default useFetchProducts

@@ -1,9 +1,10 @@
+import Title from "../title/title";
 import styles from "./TableCustome.module.scss";
 
 function TableCustome({theadList , tbodyList}) {
   return (
     <div className={styles.tableContainer}>
-      <h2 className={styles.title}>Danh sách danh mục</h2>
+      <Title title="Danh mục" />
       <table className={styles.table}>
          {theadList}
         {tbodyList}
