@@ -11,21 +11,9 @@ const router = createBrowserRouter(
             element: <DashboardPage />,
             children: [
                 {
-                    path: "/",
+                    path: "/categories",
                     element: <CategoriesList />
                 },
-                {
-                    path: "/page1",
-                    element: <h1>Page1</h1>
-                },
-                {
-                    path: "/page2",
-                    element: <h1>Page2</h1>
-                },
-                {
-                    path: "/page3",
-                    element: <h1>Page3</h1>
-                }
             
             ]
         },

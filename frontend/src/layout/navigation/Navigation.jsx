@@ -7,7 +7,7 @@ function NavigationCustome() {
   const navigate = useNavigate();
 
   const listMenu = [
-    { icon: "bxr bx-home-circle", link: "/" },
+    { icon: "bxr bx-home-circle", link: "/categories" },
     { icon: "bxr bx-equal-square", link: "/page1" },
     { icon: "bxr bx-arrow-from-bottom-stroke", link: "/page2" },
     { icon: "bxr bx-cog", link: "/page3" },
