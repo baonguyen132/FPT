@@ -25,6 +25,29 @@ const handleAddCategories = async ({ name, description }) => {
 }
 
 
+export const handleUploadCategories = async ({ idCategories, name, description }) => {
+    const response = await fetch(
+        linkAPI + "categories/" + idCategories,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${accessToken}`
+            }
+            ,
+            body: JSON.stringify({ name, description })
+        }
+    )
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json()
+
+    return data;
+
+}
+
 export const handleDeleteCategories = async ({ id }) => {
     const response = await fetch(
         linkAPI + "categories/"+id,

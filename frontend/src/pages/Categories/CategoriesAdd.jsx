@@ -1,6 +1,5 @@
-import Title from "../../components/common/title/title";
+import FormCategory from "../../components/CategoryTag/formCategory";
 import handleAddCategories from "../../services/categoryService";
-import styles from "./CategoriesAdd.module.scss";
 import { useState } from "react";
 
 function CategoriesAdd() {
@@ -19,33 +18,7 @@ function CategoriesAdd() {
   }
 
   return (
-    <div className={styles.form}>
-      <Title title = "Thêm sản phẩm" />
-      <div className={styles.field}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Enter name"
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          name="description"
-          value={form.description}
-          onChange={handleChange}
-          placeholder="Enter description"
-        />
-      </div>
-
-      <button type="submit" className={styles.submitBtn} onClick={handleAdd}>
-        Submit
-      </button>
-    </div>
+    <FormCategory title="Thêm danh mục" form={form} handleSubmit={handleAdd} handleChange={handleChange}/>
   );
 }
 

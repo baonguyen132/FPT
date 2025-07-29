@@ -5,7 +5,7 @@ import ProductList from "./ProductsList";
 import ProductsAdd from "./ProductsAdd";
 
 function Products() {
-  const {idCategories } = useLoaderData();
+  const {idCategories} = useLoaderData();
   const [screen, setScreen] = useState(true);
   return (
     <>

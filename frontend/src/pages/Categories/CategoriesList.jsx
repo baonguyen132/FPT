@@ -22,9 +22,9 @@ function CategoriesList() {
     }
   }, [categories]);
 
+  
   const deleteHandle = (id) => {
     handleDeleteCategories({ id }); // ✅ dùng đúng biến id
-
     const filteredData = data.filter((item) => item.id !== id);
     setData(filteredData);
   };
@@ -59,7 +59,7 @@ function CategoriesList() {
                   />
                 </td>
                 <td>
-                  <BtnEdit onClick={() => {}} />
+                  <BtnEdit onClick={() => {window.location.href = `/categories/update/${item.id}/${item.name}/${item.description}`}} />
                 </td>
                 <td>
                   <BtnDelete

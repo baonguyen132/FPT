@@ -23,6 +23,28 @@ const handleAddProducts = async ({ name, description, quantity, price, categoryI
     return data;
 
 }
+export const handleUploadProducts = async ({ idProduct, name, description, quantity, price, idCategories }) => {
+    const response = await fetch(
+        linkAPI + "products/" + idProduct,
+        {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${accessToken}`
+            }
+            ,
+            body: JSON.stringify({name, description, quantity, price, idCategories })
+        }
+    )
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json()
+
+    return data;
+
+}
 
 export const handleDeleteProducts = async ({ id }) => {
     const response = await fetch(

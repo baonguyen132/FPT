@@ -28,9 +28,6 @@ function ProductList({ idCategories }) {
     setData(filteredData);
   };
 
-  console.log(products);
-  
-
   return (
     <TableCustome
       theadList={
@@ -57,10 +54,18 @@ function ProductList({ idCategories }) {
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
                 <td>
-                  <BtnEdit onClick={() => {}} />
+                  <BtnEdit
+                    onClick={() => {
+                      window.location.href = `/products/${item.id}/${item.name}/${item.description}/${item.quantity}/${item.price}/${idCategories}`;
+                    }}
+                  />
                 </td>
                 <td>
-                  <BtnDelete onClick={() => {deleteHandle(item.id)}} />
+                  <BtnDelete
+                    onClick={() => {
+                      deleteHandle(item.id);
+                    }}
+                  />
                 </td>
               </tr>
             ))
